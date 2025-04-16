@@ -13,7 +13,6 @@ function draw() {
   background(r, g, b);
   for (let y = 0; y <= height; y += 60) {
     for (let x = 0; x <= width; x += 60) {
-        
       circle(y, x, random(50));
     }
   }

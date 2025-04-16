@@ -16,7 +16,11 @@ function createBall() {
 }
 
 function draw() {
-  background(255);
+  background(255, 255, 255, 10);
+
+  if (balls.length > 100) {
+    balls.splice(0, 1);
+  }
   for (let ball of balls) {
     ball.x += ball.dx;
     ball.y += ball.dy;
