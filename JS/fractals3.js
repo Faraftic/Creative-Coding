@@ -37,7 +37,6 @@ function randomGeneration() {
     a: randomNumber,
     b: randomRule,
   };
-
 }
 
 function generate() {
@@ -58,14 +57,14 @@ function generate() {
   }
   sentence = nextSentence;
   treeDraw();
-  len *= random(0.4, 0.6);
+  len *= random(0.6, 0.8);
 }
 
 function treeDraw() {
   background(255);
   resetMatrix();
   stroke(0);
-  translate(width / 2, height);
+  translate(width / 2, height / 2);
   for (var i = 0; i < sentence.length; i++) {
     var current = sentence.charAt(i);
     if (current == "F") {
