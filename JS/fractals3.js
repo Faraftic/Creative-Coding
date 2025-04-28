@@ -3,10 +3,42 @@ var sentence = axiom;
 var len = 100;
 
 var rules = [];
-rules[0] = {
-  a: "F",
-  b: "FF+[-f-f+F-F]-[+f+f-F+F+]",
-};
+
+function randomGeneration() {
+  //Generate a (random number)
+  let randomNumber = random(["F", "f"]);
+
+  //Generate b (random transformation)
+  const transformations = ["F", "f", "+", "-", "["];
+
+  let randomRule = "";
+  let openBrackets = 0;
+
+  for (var i = 0; i < 20; i++) {
+    if (openBrackets > 0 && random(1) < 0.3) {
+      // Close an open bracket with "]"
+      randomRule += "]";
+      openBrackets--;
+    } else {
+      let nextChar = transformations[floor(random(transformations.length))];
+      if (nextChar === "[") {
+        openBrackets++;
+      }
+      randomRule += nextChar;
+    }
+  }
+
+  while (openBrackets > 0) {
+    randomRule += "]";
+    openBrackets--;
+  }
+
+  rules[0] = {
+    a: randomNumber,
+    b: randomRule,
+  };
+
+}
 
 function generate() {
   var nextSentence = "";
@@ -37,17 +69,23 @@ function treeDraw() {
   for (var i = 0; i < sentence.length; i++) {
     var current = sentence.charAt(i);
     if (current == "F") {
+      //F
       line(0, 0, 0, -len);
       translate(0, -len);
     } else if (current == "f") {
+      //f
       translate(0, -len);
     } else if (current == "+") {
+      //+
       rotate(PI / 3);
     } else if (current == "-") {
+      //-
       rotate(-PI / 3);
     } else if (current == "[") {
+      //[
       push();
     } else if (current == "]") {
+      //]
       pop();
     }
   }
@@ -56,7 +94,16 @@ function treeDraw() {
 function setup() {
   createCanvas(400, 400);
   background(255);
+
+  randomGeneration();
   treeDraw();
-  var button = createButton("Generate");
+
+  const button = createButton("Generate");
   button.mousePressed(generate);
+
+  const regenerateButton = createButton("Regenerate Rule");
+  regenerateButton.mousePressed(() => {
+    randomGeneration();
+    treeDraw();
+  });
 }
