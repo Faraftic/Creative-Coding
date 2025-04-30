@@ -23,5 +23,27 @@ function setup() {
       }
     }
   }
+
+  // Randomize the first word
+  let keys = Array.from(map.keys());
+  let randomStartWord = random(keys); // Randomly pick a starting word
+  let generatedText = generateText(randomStartWord, 50); // Generate 50 words
+  createP(generatedText); // Display the generated text
   console.log(map);
+}
+
+function generateText(startWord, numWords) {
+  let currentWord = startWord;
+  let result = [currentWord];
+
+  for (let i = 0; i < numWords - 1; i++) {
+    let nextWords = map.get(currentWord);
+    if (!nextWords || nextWords.length === 0) {
+      break; // Stop if no next words are available
+    }
+    currentWord = random(nextWords); // Pick a random next word
+    result.push(currentWord);
+  }
+
+  return result.join(" ");
 }
