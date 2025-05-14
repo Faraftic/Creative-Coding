@@ -1,6 +1,7 @@
 let cols = 50;
 let rows = 50;
 let grid = [];
+let running = true;
 
 function setup() {
   createCanvas(500, 500);
@@ -11,6 +12,15 @@ function setup() {
     }
   }
   frameRate(10); // Set the frame rate to 10 FPS
+}
+
+function mousePressed() {
+  running = !running;
+  if (running) {
+    loop();
+  } else {
+    noLoop();
+  }
 }
 
 function draw() {
