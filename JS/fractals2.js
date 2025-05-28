@@ -32,7 +32,8 @@ function generate() {
 function treeDraw() {
   background(255);
   resetMatrix();
-  stroke(0);
+  stroke(random(255), random(255), random(255));
+  strokeWeight(2);
   translate(width / 2, height / 2);
   for (var i = 0; i < sentence.length; i++) {
     var current = sentence.charAt(i);
