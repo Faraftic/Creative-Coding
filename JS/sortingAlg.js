@@ -4,6 +4,15 @@ let j = 0;
 let sorting = true;
 let stepsPerFrame = 1;
 
+// Console log with different styles to test CSS styling
+console.log(
+  "%cThis text has a yellow background and a larger font!",
+  "background-color: yellow; font-size: larger"
+);
+var css =
+  "text-shadow: 1px 1px 2px black, 0 0 1em blue, 0 0 0.2em blue; font-size: 40px;";
+console.log("%cSalü", css);
+
 function setup() {
   createCanvas(800, 400);
   values = new Array(width).fill(0).map(() => random(height));
