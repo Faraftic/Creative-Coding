@@ -39,7 +39,11 @@ function draw() {
   // Draw bars
   for (let k = 0; k < values.length; k++) {
     stroke(255);
-    fill(k === j || k === j + 1 ? "red" : 255);
+    if (k >= values.length - i) {
+      fill("green"); // Fertig sortierte Balken grün
+    } else {
+      fill(k === j || k === j + 1 ? "red" : 255);
+    }
     rect(k, height - values[k], 1, values[k]);
   }
 
